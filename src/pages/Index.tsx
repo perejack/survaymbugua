@@ -94,7 +94,7 @@ export default function Index() {
 
   const handleUpgradeTier = async (tier: "free" | "starter" | "pro" | "elite") => {
     const costs: Record<string, number> = {
-      starter: 500,
+      starter: 2,
       pro: 1500,
       elite: 5000,
     };

@@ -14,7 +14,7 @@ const tiers = [
   {
     id: "starter" as const,
     name: "Starter",
-    price: 350,
+    price: 2,
     color: "silver",
     icon: Star,
     multiplier: "1.2x",
