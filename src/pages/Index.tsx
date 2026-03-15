@@ -22,17 +22,17 @@ export default function Index() {
   const { isAuthenticated, isLoading: isAuthLoading, profile, signOut, balance, totalEarned } = useAuth();
   const { completedSurveyIds, completeSurvey, withdraw, upgradeTier } = useDatabase();
   
-  const [page, setPage] = useState<Page>("landing");
+  const [page, setPage] = useState<Page>("signup");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [activeSurveyId, setActiveSurveyId] = useState<string | null>(null);
 
   // Handle auth state changes
   useEffect(() => {
     if (!isAuthLoading) {
-      if (isAuthenticated && page === "landing") {
+      if (isAuthenticated && (page === "signup" || page === "login")) {
         setPage("home");
-      } else if (!isAuthenticated && page !== "landing" && page !== "signup" && page !== "login") {
-        setPage("landing");
+      } else if (!isAuthenticated && page !== "signup" && page !== "login") {
+        setPage("signup");
       }
     }
   }, [isAuthenticated, isAuthLoading, page]);

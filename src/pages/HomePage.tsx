@@ -132,60 +132,6 @@ export default function HomePage({ profile, completedTaskIds, onNavigate, onSele
         </motion.div>
       </div>
 
-      {/* Section: Premium Surveys */}
-      {premiumSurveys.length > 0 && (
-        <div className="px-4 mb-7">
-          <div className="flex items-center justify-between mb-3">
-            <div className="min-w-0">
-              <h2 className="text-base font-extrabold text-foreground flex items-center gap-2">
-                <Crown size={16} className="text-yellow-500" />
-                Premium Surveys
-              </h2>
-              <p className="text-xs text-muted-foreground mt-0.5">Unlock higher rewards with a package</p>
-            </div>
-            <button
-              onClick={() => onNavigate("premium")}
-              className="text-xs font-bold text-yellow-700 bg-yellow-500/10 px-3 py-2 glass-inner"
-            >
-              View Packages
-            </button>
-          </div>
-          <div className="space-y-3">
-            {premiumSurveys.slice(0, 3).map((task, i) => {
-              const cat = categories.find(c => c.id === task.categoryId);
-              const ui = categoryUi[task.categoryId];
-              const Icon = ui?.icon;
-              return (
-                <motion.button
-                  key={task.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => onNavigate("premium")}
-                  className="w-full overflow-hidden glass-card-sm p-0 text-left hover:bg-secondary transition-colors active:scale-[0.98] border border-yellow-500/20"
-                >
-                  <div className="p-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-11 h-11 rounded-2xl bg-yellow-500/10 flex items-center justify-center">
-                        {Icon ? <Icon size={18} className="text-yellow-600" /> : <Crown size={18} className="text-yellow-600" />}
-                      </div>
-                      <div className="min-w-0">
-                        <h3 className="text-sm font-bold text-foreground truncate">{task.title}</h3>
-                        <p className="text-xs text-muted-foreground">{cat?.name} • {task.duration}</p>
-                      </div>
-                    </div>
-                    <div className="glass-inner bg-yellow-500/10 px-3 py-1.5">
-                      <span className="text-xs font-extrabold text-yellow-700 tabular">+{task.reward} KSH</span>
-                    </div>
-                  </div>
-                  <div className={`h-1 w-full bg-gradient-to-r ${categoryUi[task.categoryId]?.accent || "from-yellow-500/20 via-yellow-500/10 to-transparent"}`} />
-                </motion.button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
       {/* Section: Available Surveys */}
       <div className="px-4 mb-7">
         <div className="flex items-center justify-between mb-3">
@@ -241,6 +187,60 @@ export default function HomePage({ profile, completedTaskIds, onNavigate, onSele
           )}
         </div>
       </div>
+
+      {/* Section: Premium Surveys */}
+      {premiumSurveys.length > 0 && (
+        <div className="px-4 mb-7">
+          <div className="flex items-center justify-between mb-3">
+            <div className="min-w-0">
+              <h2 className="text-base font-extrabold text-foreground flex items-center gap-2">
+                <Crown size={16} className="text-yellow-500" />
+                Premium Surveys
+              </h2>
+              <p className="text-xs text-muted-foreground mt-0.5">Unlock higher rewards with a package</p>
+            </div>
+            <button
+              onClick={() => onNavigate("premium")}
+              className="text-xs font-bold text-yellow-700 bg-yellow-500/10 px-3 py-2 glass-inner"
+            >
+              View Packages
+            </button>
+          </div>
+          <div className="space-y-3">
+            {premiumSurveys.slice(0, 3).map((task, i) => {
+              const cat = categories.find(c => c.id === task.categoryId);
+              const ui = categoryUi[task.categoryId];
+              const Icon = ui?.icon;
+              return (
+                <motion.button
+                  key={task.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  onClick={() => onNavigate("premium")}
+                  className="w-full overflow-hidden glass-card-sm p-0 text-left hover:bg-secondary transition-colors active:scale-[0.98] border border-yellow-500/20"
+                >
+                  <div className="p-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-11 h-11 rounded-2xl bg-yellow-500/10 flex items-center justify-center">
+                        {Icon ? <Icon size={18} className="text-yellow-600" /> : <Crown size={18} className="text-yellow-600" />}
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-sm font-bold text-foreground truncate">{task.title}</h3>
+                        <p className="text-xs text-muted-foreground">{cat?.name} • {task.duration}</p>
+                      </div>
+                    </div>
+                    <div className="glass-inner bg-yellow-500/10 px-3 py-1.5">
+                      <span className="text-xs font-extrabold text-yellow-700 tabular">+{task.reward} KSH</span>
+                    </div>
+                  </div>
+                  <div className={`h-1 w-full bg-gradient-to-r ${categoryUi[task.categoryId]?.accent || "from-yellow-500/20 via-yellow-500/10 to-transparent"}`} />
+                </motion.button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Categories */}
       <div className="px-4">
